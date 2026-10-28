@@ -14,25 +14,42 @@ const screenGame = {
   width: 1280,
   height: 600,
 };
-let player = new Player(20, 20);
-let food = new Food(40, screenGame);
+let players = {};
+let food = new Food(20, screenGame);
 food.createFoods();
 
 io.on("connection", (socket) => {
+  players[socket.id] = new Player(20, 20, screenGame);
   socket.on("player:dir", (direction) => {
-    player.dir = direction;
+    players[socket.id].dir = direction;
   });
   socket.on("disconnect", () => {
     console.log("player disconnect:", socket.id);
+    if (players[socket.id]) {
+      delete players[socket.id];
+    }
   });
 });
 setInterval(() => {
-  player.update(food);
+  rank = {};
+  for (const [socketId, player] of Object.entries(players)) {
+    if (player.gameOver) {
+      io.to(socketId).emit("player:gameOver", player.gameOver);
+    }
+    if (player.alive) {
+      player.update(food);
+      io.to(socketId).emit("player:score", player.score);
+      rank[socketId] = player.score;
+    }
+  }
+  Object.entries(rank)
+    .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
+    .forEach(([socketId], index) => {
+      io.to(socketId).emit("player:rank", index + 1);
+    });
   io.emit("food:respwan", food.foodList);
-  io.emit("player:pos", {
-    body: player.body,
-    size: player.size,
-    speed: player.speed,
+  io.emit("players", {
+    players,
   });
 }, 150);
 

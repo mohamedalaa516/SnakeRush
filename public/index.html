@@ -4,11 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake Game</title>
+    <link rel="styleSheet" href="style.css" />
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js" type="module"></script>
   </head>
   <body>
-    <h1>Welcome to Snake game</h1>
+    <div class="ui">
+      <div class="ui-score">
+        <span class="ui-label">Score</span>
+        <span class="ui-number" id="score-number">200</span>
+      </div>
+
+      <div class="ui-rank">
+        <span class="ui-label">Rank</span>
+        <span class="ui-number" id="rank-number">#4</span>
+      </div>
+
+      <div class="game-result ui-lose" id="lose-screen" hidden>
+        <h1>YOU DIED</h1>
+        <h2>Your snake has been eliminated</h2>
+
+        <div class="result-stat">
+          <span class="ui-label">Final Score</span>
+          <span class="ui-number" id="lose-score">200</span>
+        </div>
+
+        <div class="result-stat">
+          <span class="ui-label">Rank</span>
+          <span class="ui-number" id="lose-rank">#4</span>
+        </div>
+
+        <button type="button" id="spectate">SPECTATE</button>
+        <button type="button" id="lose-lobby">BACK TO LOBBY</button>
+      </div>
+
+      <div class="game-result ui-win" id="win-screen" hidden>
+        <h1>VICTORY!</h1>
+        <h2>You're the last snake standing!</h2>
+
+        <div class="result-stat">
+          <span class="ui-label">Final Score</span>
+          <span class="ui-number" id="win-score">1250</span>
+        </div>
+
+        <div class="result-stat">
+          <span class="ui-label">Rank</span>
+          <span class="ui-number">#1</span>
+        </div>
+
+        <button type="button" id="win-lobby">BACK TO LOBBY</button>
+      </div>
+    </div>
+
     <canvas id="myCanvas"></canvas>
   </body>
 </html>

@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #080d14;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+.ui {
+  position: fixed;
+  inset: 24px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ui-score,
+.ui-rank {
+  position: absolute;
+  top: 0;
+}
+
+.ui-score {
+  left: 0;
+}
+
+.ui-rank {
+  right: 0;
+}
+
+.game-result {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: min(380px, calc(100vw - 32px));
+  padding: 32px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  background: rgba(15, 27, 39, 0.96);
+  border: 1px solid #344454;
+  border-radius: 20px;
+
+  text-align: center;
+  pointer-events: auto;
+  backdrop-filter: blur(16px);
+}
+
+.game-result[hidden] {
+  display: none;
+}
+
+.game-result h1 {
+  font-size: 32px;
+  letter-spacing: 2px;
+}
+
+.game-result h2 {
+  font-size: 14px;
+  font-weight: normal;
+  color: #91a4b7;
+}
+
+.ui-lose h1 {
+  color: #ff5263;
+}
+
+.ui-win h1 {
+  color: #00ffaa;
+}
+
+.result-stat {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-stat .ui-number {
+  font-size: 22px;
+}
+
+.game-result button {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #435263;
+  border-radius: 10px;
+
+  background: #182633;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.game-result button:hover {
+  background: #263a4b;
+}
+
+.ui-win button {
+  border-color: #00ffaa;
+  color: #00ffaa;
+}
+.ui-score,
+.ui-rank {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 120px;
+  padding: 14px 20px;
+
+  background: rgba(15, 27, 39, 0.9);
+  border: 1px solid rgba(0, 255, 170, 0.25);
+  border-radius: 14px;
+
+  backdrop-filter: blur(10px);
+}
+
+.ui-label {
+  color: #91a4b7;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.ui-number {
+  color: #00ffaa;
+  font-size: 28px;
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(0, 255, 170, 0.3);
+}

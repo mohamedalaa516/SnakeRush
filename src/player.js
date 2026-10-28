@@ -1,6 +1,10 @@
-const { isColliding } = require("./helperFunction.js");
+const {
+  isColliding,
+  isCollidingWithWall,
+  isCollidingHead,
+} = require("./helperFunction.js");
 class Player {
-  constructor(size, speed) {
+  constructor(size, speed, screen) {
     this.body = [
       { x: 100, y: 100 }, // Head
       { x: 80, y: 100 }, // Body
@@ -15,6 +19,10 @@ class Player {
       right: true,
       left: false,
     };
+    this.screen = screen;
+    this.gameOver = false;
+    this.alive = true;
+    this.score = 0;
   }
   get newHead() {
     return { ...this.body[0] };
@@ -40,9 +48,26 @@ class Player {
         this.eatFood = true;
         foods.foodList.splice(i, 1);
         foods.foodList.push(foods.generateFoodPos());
+        this.score += 10;
         break;
       }
     }
+    if (
+      isCollidingWithWall(
+        newHead,
+        this.size,
+        this.screen.width,
+        this.screen.height,
+      )
+    ) {
+      this.gameOver = true;
+      this.alive = false;
+    }
+    if (isCollidingHead(newHead, this.body)) {
+      this.gameOver = true;
+      this.alive = false;
+    }
+
     this.body.unshift(newHead);
     if (!this.eatFood) {
       this.body.pop();
