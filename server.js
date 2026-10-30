@@ -12,7 +12,7 @@ const io = new Server(httpServer);
 const PORT = 3000;
 
 const screenGame = {
-  width: 2000,
+  width: 1280,
   height: 800,
 };
 let players = new Map();

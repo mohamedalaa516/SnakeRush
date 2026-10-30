@@ -72,7 +72,7 @@ function draw() {
 
   ctx.scale(myPlayer.camera.zoom || 1, myPlayer.camera.zoom || 1);
   ctx.translate(-myPlayer.camera.x, -myPlayer.camera.y);
-  drawBackground(ctx, 2000, 800);
+  drawBackground(ctx, 1280, 800);
 
   for (let food of foods) {
     if (foodImage.complete && foodImage.naturalWidth > 0) {
