@@ -3,7 +3,7 @@ class Food {
     this.size = size;
     this.screen = screen;
     this.foodList = [];
-    this.capacity = 20;
+    this.capacity = 150;
   }
 
   generateFoodPos() {

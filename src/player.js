@@ -60,12 +60,12 @@ class Player {
         this.screen.height,
       )
     ) {
-      this.gameOver = true;
       this.alive = false;
+      this.gameOver = true;
     }
     if (isCollidingHead(newHead, this.body)) {
-      this.gameOver = true;
       this.alive = false;
+      this.gameOver = true;
     }
 
     this.body.unshift(newHead);

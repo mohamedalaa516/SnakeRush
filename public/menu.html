@@ -1,0 +1,25 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+    <link rel="styleSheet" href="menu-style.css" />
+  </head>
+  <body>
+    <div class="menu">
+      <form class="menu-login">
+        <label for="name">Enter your name</label>
+        <input
+          type="text"
+          placeholder="mohamed alaa"
+          name="username"
+          required
+        />
+        <input type="submit" value="Press Start" id="login-submit" />
+      </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="menu-client.js" type="module"></script>
+  </body>
+</html>
